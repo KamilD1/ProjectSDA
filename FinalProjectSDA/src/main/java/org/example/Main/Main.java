@@ -26,7 +26,7 @@ public class Main {
 
 
         calcPage.openPage();
-        calcPage.sendFirstNumber("4");
+        calcPage.sendFirstNumber("2");
         calcPage.selectBar("+");
         calcPage.sendSecondNumber("4");
         calcPage.clickButtonGo();
