@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 public class CalcPage {
     WebDriver driver;
     public CalcPage(WebDriver driver){
@@ -19,11 +22,8 @@ public class CalcPage {
     WebElement inputSecondNumber;
     @FindBy(xpath = "//button[@ng-click='doAddition()']")
     WebElement buttonGo;
-
-    public void openPage(){
-        driver.get("https://www.way2automation.com/angularjs-protractor/calc/");
-        driver.manage().window().maximize();
-    }
+    @FindBy(xpath = "//h2[@class='ng-binding']")
+    WebElement result;
 
     public void sendFirstNumber(String number){
         inputFirstNumber.sendKeys(number);
@@ -40,7 +40,10 @@ public class CalcPage {
     public void clickButtonGo(){
         buttonGo.click();
     }
-    public void closePage(){
-        driver.close();
+    public void getResult(){
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        System.out.println(result.getText());
+
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class AddCustomerPage {
     WebDriver driver;
@@ -21,7 +22,13 @@ public class AddCustomerPage {
     WebElement postCd;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement confirmBtn;
+    @FindBy(xpath = "//button[@ng-click='manager()']")
+    WebElement bankButton;
 
+    public void clickBankManagerLoginBtn(){
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        bankButton.click();
+    }
     public void sendCustomerData(String yourFName, String yourLName, String yourPostCode){
         addCustomerBtn.click();
         fName.sendKeys(yourFName);
